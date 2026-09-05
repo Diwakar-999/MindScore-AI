@@ -3,7 +3,7 @@
 /* =========================================================
    Config
    ========================================================= */
-const API_BASE = 'http://127.0.0.1:8000';
+const API_BASE = 'https://mindscore-ai-tjf8.onrender.com';
 const PREDICT_URL = `${API_BASE}/predict`;
 const STATUS_URL = `${API_BASE}/`;
 
