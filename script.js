@@ -390,7 +390,7 @@ async function handleSubmit(e) {
 
   try {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 15000);
+    const timeout = setTimeout(() => controller.abort(), 60000);
 
     const res = await fetch(PREDICT_URL, {
       method: 'POST',
@@ -432,7 +432,9 @@ async function handleSubmit(e) {
     if (err.name === 'AbortError') {
       showApiError('The request took too long to respond. Please try again.');
     } else {
-      showApiError('Unable to connect to the AI prediction service. Please make sure the FastAPI server is running at http://127.0.0.1:8000.');
+      showApiError(
+  'Unable to connect to the AI prediction service. Please try again in a moment.'
+);
       setStatus(false);
     }
   }
@@ -475,7 +477,7 @@ function renderResults(payload, score) {
 function animateGauge(score) {
   const clamped = Math.max(0, Math.min(100, score));
   const circumference = 2 * Math.PI * 94; // r=94
-  const offset = circumference - (cclamped/ 10) * circumference;
+  const offset = circumference - (clamped/ 10) * circumference;
 
   els.gaugeProgress.style.strokeDasharray = `${circumference}`;
   els.gaugeProgress.style.strokeDashoffset = `${circumference}`;
@@ -661,7 +663,7 @@ or evaluation.
 
 async function shareResult() {
   if (state.lastScore == null) return;
-  const text = `My MindScore AI predicted wellness score is ${state.lastScore.toFixed(2)}/100. This is an AI-generated educational prediction, not a medical diagnosis.`;
+  const text = `My MindScore AI predicted wellness score is ${state.lastScore.toFixed(2)}/10. This is an AI-generated educational prediction, not a medical diagnosis.`;
 
   if (navigator.share) {
     try {
