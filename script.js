@@ -475,7 +475,7 @@ function renderResults(payload, score) {
 function animateGauge(score) {
   const clamped = Math.max(0, Math.min(100, score));
   const circumference = 2 * Math.PI * 94; // r=94
-  const offset = circumference - (clamped / 100) * circumference;
+  const offset = circumference - (cclamped/ 10) * circumference;
 
   els.gaugeProgress.style.strokeDasharray = `${circumference}`;
   els.gaugeProgress.style.strokeDashoffset = `${circumference}`;
